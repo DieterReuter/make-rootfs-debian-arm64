@@ -5,7 +5,8 @@ RUN apt-get install -y \
     qemu-user-static \
     binfmt-support \
     debootstrap \
-    debian-ports-archive-keyring
+    debian-ports-archive-keyring \
+    --no-install-recommends
 
 RUN mkdir /data
 WORKDIR /data
