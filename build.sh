@@ -1,12 +1,14 @@
 #!/bin/bash -e
 set -x
 
-#touch rootfs.tar.gz
+# Cleanup
+rm -fr debian-arm64
 
 # Debootstrap a minimal Debian Jessie rootfs 
+# --keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg \
+# --no-check-gpg \
 qemu-debootstrap \
   --arch=arm64 \
-  --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
   --variant=buildd \
   --exclude=debfoster \
   --include=net-tools \
@@ -14,9 +16,8 @@ qemu-debootstrap \
   debian-arm64 \
   http://ftp.debian.org/debian
 
-# set root user
-chroot debian-arm64 \
-   echo "root:shield" | chpasswd
+# set root password to 'hypriot'
+echo 'root:hypriot' | sudo chroot debian-arm64 /usr/sbin/chpasswd
 
-# Package tarball
-tar -czf /data/rootfs.tar.gz -C debian-arm64/ .   
+# Package rootfs tarball
+tar -czf rootfs.tar.gz -C debian-arm64/ .
