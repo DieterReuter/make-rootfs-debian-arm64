@@ -16,5 +16,5 @@ dependencies:
 
 test:
   override:
-    - docker run --rm -v $(pwd):/out builder cp rootfs.tar.gz /out/
+    - docker run --rm --privileged -v $(pwd):/data builder /build.sh
     - mv rootfs.tar.gz $CIRCLE_ARTIFACTS/
