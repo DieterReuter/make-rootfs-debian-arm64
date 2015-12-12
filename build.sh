@@ -6,7 +6,7 @@ set -x
 # Debootstrap a minimal Debian Jessie rootfs 
 qemu-debootstrap \
   --arch=arm64 \
-  --keyring /usr/share/keyrings/debian-archive-keyring.gpg 
+  --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
   --variant=buildd \
   --exclude=debfoster \
   --include=net-tools \
