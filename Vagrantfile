@@ -5,4 +5,9 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.provision "shell", path: "scripts/provision.sh", privileged: false
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ['modifyvm', :id, '--usb', 'on']
+    vb.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'sdcard-reader', '--vendorid', '0x1307']
+  end
 end
