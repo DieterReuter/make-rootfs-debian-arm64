@@ -13,5 +13,7 @@ dependencies:
 
 test:
   override:
-    - docker run --rm --privileged -v $(pwd):/data builder /build.sh
-    - mv rootfs.tar.gz $CIRCLE_ARTIFACTS/
+    - docker run --rm --privileged -e OS_ARCH=armhf -v $(pwd):/data builder /build.sh
+    - mv rootfs-armhf.tar.gz $CIRCLE_ARTIFACTS/
+    - docker run --rm --privileged -e OS_ARCH=arm64 -v $(pwd):/data builder /build.sh
+    - mv rootfs-arm64.tar.gz $CIRCLE_ARTIFACTS/
