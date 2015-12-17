@@ -1,20 +1,23 @@
-
 language: bash
-
 before_install:
-  - sudo apt-get update -qq
-
+- sudo apt-get update -qq
 install:
-  - sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring --no-install-recommends
-
-before_script:
-  - docker build -t builder .
-
+- sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring
+  --no-install-recommends
+before_script: 
 script:
-  # Build directly on host
-  - sudo BUILD_ARCH=armhf ./build.sh
-  - sudo BUILD_ARCH=arm64 ./build.sh
-  # Build within Docker
-  #- docker run --rm --privileged -e BUILD_ARCH=armhf -v $(pwd):/data builder /build.sh
-  #- docker run --rm --privileged -e BUILD_ARCH=arm64 -v $(pwd):/data builder /build.sh
-  - ls -al *.tar.gz
+- sudo BUILD_ARCH=armhf ./build.sh
+- sudo BUILD_ARCH=arm64 ./build.sh
+- ls -al *.tar.gz
+deploy:
+  provider: releases
+  api-key: $GITHUB_OAUTH_TOKEN
+  file:
+  - rootfs-armhf.tar.gz
+  - rootfs-arm64.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+env:
+  global:
+  - secure: L84M9/okZp8p8btBwhDKz1GrWTXEp0OXXQ0K2Ec6uXtIJwSrfVBlecxQe+5a0W4eo0KZjrv+2jo7A78yrZBzcDDfL3A05c6JGacoq4YGZmHk31sgFPEFky8QozNd7RRMy/5RiEqW73U6VSpMvNwFE4/wv3YAxlOeoGNwhDpbLV6OCHZgV2Sh10MkvmscvJl2vk8toeWHVSer+n5xeHM36iqbhrEqedwpP0Z3qSzIpe4VPlicxOtk5tF+dgZLdAqKxWeTiYkDhPiaSibwfyJ4EVIuSYhOCldwHr74Xu6akFhnUGc8RCvIpuGrxJquuSGEyUBXk2sfDjcujlZoA8+XrUxNJNiXG9F6cW6g49SzlqCvOulkOxrSi64OPUqRR1x0arVSyVopmxuIncCNVKk3lZq8OYFgSlV+dUU1J+aZEOduTajkSlnwpccq7UT12jNHK6x+xBgdhmtwZEFTQrboNszT5bZ1VAjoIs3iJT9fi4ib+7mBOHDoLoUoYbumH8W7cli9WlcnRC8v/G55PXXXt3hiUaEhqQt2UZg3cYvKCgLWEBG//VfTNEuPd7LeRaX/NScwUJqi64MMltLWICqdswwFBEkfFmktT04eU6Bk7q8Pf9JCvdUgGu7GUmFCOwisDpviB6RAnJD0k06C+4mCdccAL5JpWI0Ps7pNYxDM5gU=
