@@ -7,15 +7,12 @@ install:
 before_script: 
 script:
 - sudo BUILD_ARCH=armhf ./build.sh
-- sudo BUILD_ARCH=arm64 ./build.sh
 - ls -al *.tar.gz
 deploy:
   provider: releases
-  api-key:
-  - secure: B3LIYu3TFHG/O9L7ZrMQWKw2F2sAUKiu5jytZFF9WZejA2H5juDpp6wOcJj5WXjZaAAvMlNEpwuyqG4bzE0XJJnu/CctxQgNJBrIyNp/BSVezo8LZ20bMqaQLZOrIZ30mo3dsqA9s7hYts8zq/Cby57HOylFEgC5GUnVIah7QbX/3G2IZouC+RoKN4qIRPjLcdt2U9HH/tY1nixgVFrRZLbkzercLkR9Ef99anVjgN0icdPPIKrjBjqrnPkucCfdXrO90VoxtlHv54jZqWBMoOZiq113bRca09uie0FQoAVIZW546xOsLEeDwaZl5x5dHnF6zWZezz7pdRu467Ph+4p0rOn+N1E91oGo934lYYvdV3FtFX5R4bPGpBgrd8LFKmKo36FTMdLd577LRVOvI3EhERmKXXAr1nUFBpTSu+2YY0Y8omehaeZXonKI2B6bZx05BQNtCcJL3L1pmw/BRSOihEJ4Mnfek5baPIBYrst5epuMTgKPWm0X+CN+q2FTPgil+6vTjyIoMw356BBmmfxj2bNE8wDHIZdrwxKQzeh+nqEC3/i32pOc5rbZPmw7SrSkMRhPU1M9i1ZhVYnW+m77e8/QA2QjD4BMuU5R99BMnM+jPysF+dN4NyMcJ85o1SL/14JHoDstJkZVDFGlLA+K4cC8AuXxJHKBM3Edxko=
-  file:
-  - rootfs-armhf.tar.gz
-  - rootfs-arm64.tar.gz
-  skip_cleanup: true
+  api_key:
+    secure: Xum+j/iteu6QmnlP+s5vHdgo3V5+u+ON7IQWqUxfsyV4imh0nmD7XGww5J3xv78Qnms+s+KxFp/I0XsGElG0mWYkfcZ/lO8Y97a2N96YChQ7OG3Gvh8/grzdlauuxeKQI9XNbfQuIjcvgvql4nUcU0ZvuoIrqpc6Hl508N3OrRdvS+CKrR2mbixfl1Yw1bQDRQ2VFAf+SZVT8GH3bWnInDEMWXQVy6zrRgqi/gF6ztw8k4ZYTfB7NLebSVr5dnTV3dk+FtYGOm7+4etA//tPfNHJS9RazBl8FWcPWXA6jA5e6HksQAZtDy3zox70OgZky3fa5/WElyRHb5olMJdvC36lVhhykkEFUNPIXQML4YK9KPx3JDx8Xp+4h5ineXdpkItQzOK6gFTUinxAZK48UHdqqp9VfuC5qY9Qe1uy83NlHdSvw0Bg/psx1MZ3rSdgh6YIxCMBLYSYUQhQjjc27Y4qDL8+XXvnYh4oSF90rx+vB/rtsQtb+ZAVJvHgkfzBlZsIhdttfetK350WKm4Gr7dN2RxGZPZoGmP6QV3+QODjlTpebX+ungSw5t60ba9u4nY9Q7zLZjEc4tQsAo89Frv4ge0PQxSWBAjQDwjI8cmT+Fu0EUqjjTdBwqg0k49ZlPsBRlBlFJenqH18nr7BJdca2iMfPuhF8AkUNoAGw/A=
+  file: rootfs-armhf.tar.gz
   on:
-    tags: true
+    # tags: true
+    repo: DieterReuter/make-roofs-debian-arm64
