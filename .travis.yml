@@ -11,9 +11,10 @@ before_script:
   - docker build -t builder .
 
 script:
-#  - sudo BUILD_ARCH=armhf ./build.sh
-#  - sudo BUILD_ARCH=arm64 ./build.sh
-  - docker run --rm --privileged -e BUILD_ARCH=armhf -v $(pwd):/data builder /build.sh
-  - ls -al *.tar.gz
-  - docker run --rm --privileged -e BUILD_ARCH=arm64 -v $(pwd):/data builder /build.sh
+  # Build directly on host
+  - sudo BUILD_ARCH=armhf ./build.sh
+  - sudo BUILD_ARCH=arm64 ./build.sh
+  # Build within Docker
+  #- docker run --rm --privileged -e BUILD_ARCH=armhf -v $(pwd):/data builder /build.sh
+  #- docker run --rm --privileged -e BUILD_ARCH=arm64 -v $(pwd):/data builder /build.sh
   - ls -al *.tar.gz
