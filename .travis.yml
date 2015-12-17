@@ -7,7 +7,7 @@ install:
 script:
 - sudo BUILD_ARCH=armhf ./build.sh
 - sudo BUILD_ARCH=arm64 ./build.sh
-- ls -al *.tar.gz
+- ls -al rootfs-*.tar.gz
 deploy:
   provider: releases
   file:

@@ -4,7 +4,7 @@
 # make-roofs-debian-arm64
 Create and package a Debian rootfs for ARM64/AARCH64
 
-This rootfs builder is meant to run on TravisCI only.
+This rootfs builder is meant to run on TravisCI only (issues with debootstrap on CircleCI).
 
 
 ## Using the builder with a local Vagrant (tested on OS X)
