@@ -30,13 +30,13 @@ qemu-debootstrap \
 ### HypriotOS specific settings ###
 
 # set hostname to 'black-pearl'
-echo 'black-pearl' | "${SUDO_CMD}" chroot "${ROOTFS_DIR}" tee /etc/hostname
+echo 'black-pearl' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/hostname
 
 # set root password to 'hypriot'
-echo 'root:hypriot' | "${SUDO_CMD}" chroot "${ROOTFS_DIR}" /usr/sbin/chpasswd
+echo 'root:hypriot' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" /usr/sbin/chpasswd
 
 # set ethernet interface eth0 to dhcp
-cat << EOM | "${SUDO_CMD}" chroot ${ROOTFS_DIR} tee /etc/network/interfaces.d/eth0.cfg
+cat << EOM | ${SUDO_CMD} chroot ${ROOTFS_DIR} tee /etc/network/interfaces.d/eth0.cfg
 # The network interface
 auto eth0
 iface eth0 inet dhcp
