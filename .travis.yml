@@ -6,7 +6,8 @@ install:
   --no-install-recommends
 before_script: 
 script:
-- sudo BUILD_ARCH=armhf ./build.sh
+#- sudo BUILD_ARCH=armhf ./build.sh
+- tar -czf rootfs-armhf.tar.gz /etc
 - ls -al *.tar.gz
 deploy:
   provider: releases
