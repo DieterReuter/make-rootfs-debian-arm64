@@ -1,11 +1,11 @@
 
 language: bash
 
-#before_install:
-#  - sudo apt-get update -qq
-#
-#install:
-#  - sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring --no-install-recommends
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring --no-install-recommends
 
 before_script:
   - docker build -t builder .
