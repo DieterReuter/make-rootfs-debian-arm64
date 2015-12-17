@@ -1,7 +1,7 @@
 language: bash
 script:
-- tar -czf rootfs-armhf.tar.gz /etc || /bin/true
-- tar -czf rootfs-arm64.tar.gz /etc || /bin/true
+- sudo BUILD_ARCH=armhf build.sh
+- sudo BUILD_ARCH=arm64 build.sh
 - ls -al *.tar.gz
 deploy:
   provider: releases
