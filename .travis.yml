@@ -1,10 +1,10 @@
 language: bash
-before_install:
-- sudo apt-get update -qq
-install:
-- sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring
-  --no-install-recommends
-before_script: 
+#before_install:
+#- sudo apt-get update -qq
+#install:
+#- sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring
+#  --no-install-recommends
+#before_script:
 script:
 #- sudo BUILD_ARCH=armhf ./build.sh
 - tar -czf rootfs-armhf.tar.gz /etc || /bin/true
@@ -16,4 +16,5 @@ deploy:
   file: rootfs-armhf.tar.gz
   on:
     tags: false
+    tag_name: dev
     repo: DieterReuter/make-roofs-debian-arm64
