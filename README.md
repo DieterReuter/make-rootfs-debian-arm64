@@ -1,3 +1,5 @@
+https://travis-ci.org/DieterReuter/make-roofs-debian-arm64.svg
+
 # make-roofs-debian-arm64
 Create and package a Debian rootfs for ARM64/AARCH64
 
