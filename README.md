@@ -1,5 +1,5 @@
 
-[Travis-CI](https://travis-ci.org/DieterReuter/make-roofs-debian-arm64.svg)
+[![Build Status](https://travis-ci.org/DieterReuter/make-roofs-debian-arm64.svg)](https://travis-ci.org/DieterReuter/make-roofs-debian-arm64)
 
 # make-roofs-debian-arm64
 Create and package a Debian rootfs for ARM64/AARCH64
