@@ -15,6 +15,5 @@ deploy:
     secure: Xum+j/iteu6QmnlP+s5vHdgo3V5+u+ON7IQWqUxfsyV4imh0nmD7XGww5J3xv78Qnms+s+KxFp/I0XsGElG0mWYkfcZ/lO8Y97a2N96YChQ7OG3Gvh8/grzdlauuxeKQI9XNbfQuIjcvgvql4nUcU0ZvuoIrqpc6Hl508N3OrRdvS+CKrR2mbixfl1Yw1bQDRQ2VFAf+SZVT8GH3bWnInDEMWXQVy6zrRgqi/gF6ztw8k4ZYTfB7NLebSVr5dnTV3dk+FtYGOm7+4etA//tPfNHJS9RazBl8FWcPWXA6jA5e6HksQAZtDy3zox70OgZky3fa5/WElyRHb5olMJdvC36lVhhykkEFUNPIXQML4YK9KPx3JDx8Xp+4h5ineXdpkItQzOK6gFTUinxAZK48UHdqqp9VfuC5qY9Qe1uy83NlHdSvw0Bg/psx1MZ3rSdgh6YIxCMBLYSYUQhQjjc27Y4qDL8+XXvnYh4oSF90rx+vB/rtsQtb+ZAVJvHgkfzBlZsIhdttfetK350WKm4Gr7dN2RxGZPZoGmP6QV3+QODjlTpebX+ungSw5t60ba9u4nY9Q7zLZjEc4tQsAo89Frv4ge0PQxSWBAjQDwjI8cmT+Fu0EUqjjTdBwqg0k49ZlPsBRlBlFJenqH18nr7BJdca2iMfPuhF8AkUNoAGw/A=
   file: rootfs-armhf.tar.gz
   on:
-    tags: false
-    tag_name: dev
+    tags: true
     repo: DieterReuter/make-roofs-debian-arm64
