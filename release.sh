@@ -1,8 +1,7 @@
 #!/bin/bash -e
 
-echo "Release a new version"
+echo "Release a new version v$(cat VERSION)"
 git tag -l
-cat VERSION
 
 git add .
 git commit -m "Release v$(cat VERSION)"
