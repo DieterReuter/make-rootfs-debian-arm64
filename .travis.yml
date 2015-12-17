@@ -1,11 +1,19 @@
+
 language: bash
 
-before_install:
-  - sudo apt-get update -qq
+#before_install:
+#  - sudo apt-get update -qq
+#
+#install:
+#  - sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring --no-install-recommends
 
-install:
-  - sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring --no-install-recommends
+before_script:
+  - docker build -t builder .
 
 script:
-  - sudo BUILD_ARCH=armhf ./build.sh
-  - sudo BUILD_ARCH=arm64 ./build.sh
+#  - sudo BUILD_ARCH=armhf ./build.sh
+#  - sudo BUILD_ARCH=arm64 ./build.sh
+  - docker run --rm --privileged -e BUILD_ARCH=armhf -v $(pwd):/data builder /build.sh
+  - ls -al *.tar.gz
+  - docker run --rm --privileged -e BUILD_ARCH=arm64 -v $(pwd):/data builder /build.sh
+  - ls -al *.tar.gz
