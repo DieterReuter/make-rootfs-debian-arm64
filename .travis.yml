@@ -1,22 +1,15 @@
 language: bash
-#before_install:
-#- sudo apt-get update -qq
-#install:
-#- sudo apt-get install -qq qemu qemu-user-static binfmt-support debootstrap debian-ports-archive-keyring
-#  --no-install-recommends
-#before_script:
 script:
-#- sudo BUILD_ARCH=armhf ./build.sh
 - tar -czf rootfs-armhf.tar.gz /etc || /bin/true
 - tar -czf rootfs-arm64.tar.gz /etc || /bin/true
 - ls -al *.tar.gz
 deploy:
   provider: releases
-  api_key:
-    secure: Xum+j/iteu6QmnlP+s5vHdgo3V5+u+ON7IQWqUxfsyV4imh0nmD7XGww5J3xv78Qnms+s+KxFp/I0XsGElG0mWYkfcZ/lO8Y97a2N96YChQ7OG3Gvh8/grzdlauuxeKQI9XNbfQuIjcvgvql4nUcU0ZvuoIrqpc6Hl508N3OrRdvS+CKrR2mbixfl1Yw1bQDRQ2VFAf+SZVT8GH3bWnInDEMWXQVy6zrRgqi/gF6ztw8k4ZYTfB7NLebSVr5dnTV3dk+FtYGOm7+4etA//tPfNHJS9RazBl8FWcPWXA6jA5e6HksQAZtDy3zox70OgZky3fa5/WElyRHb5olMJdvC36lVhhykkEFUNPIXQML4YK9KPx3JDx8Xp+4h5ineXdpkItQzOK6gFTUinxAZK48UHdqqp9VfuC5qY9Qe1uy83NlHdSvw0Bg/psx1MZ3rSdgh6YIxCMBLYSYUQhQjjc27Y4qDL8+XXvnYh4oSF90rx+vB/rtsQtb+ZAVJvHgkfzBlZsIhdttfetK350WKm4Gr7dN2RxGZPZoGmP6QV3+QODjlTpebX+ungSw5t60ba9u4nY9Q7zLZjEc4tQsAo89Frv4ge0PQxSWBAjQDwjI8cmT+Fu0EUqjjTdBwqg0k49ZlPsBRlBlFJenqH18nr7BJdca2iMfPuhF8AkUNoAGw/A=
-  file: 
-    - rootfs-armhf.tar.gz
-    - rootfs-arm64.tar.gz
+  file:
+  - rootfs-armhf.tar.gz
+  - rootfs-arm64.tar.gz
   on:
     tags: true
     repo: DieterReuter/make-roofs-debian-arm64
+  api-key:
+    secure: vb0KUiIPXOW2zJreFLbpVCsETs3q/+W7NPZSN237Ar1c3zuEBmW+57b/QaYvBeJeGNbv62N61/gjgTa5jL8n/3PlcHFAEgFvPbkGiRusYc2j6uSCUc6pZPFW3VzhQ74IFl7Hy6M8L/Th88Edjbq0q+w1L/MyqhUPxCGmG+/daosecPy0CttmLyF5iLMllPB/XZvH1BIq2w4DCp2DnwSvtm/unD1WfrrQLGQWqt1f0l3Lt5gQ7XxdBm67f4hp82oajxGSmAGupDzVUlAIbt8YORdZzOeKftTsIU0dQmOYYsskzmz7GTgjVzh87u0v4M96bvAMGlwZanEifUvBQ/T2TAHCZg6JQEWVaDNJF+YQHBatnjqWGT2j839IIart7bi4CZPoKj/SEaSf7DDzO1ArdV0HmlcB783QSFx3D+VkNHAUXAztbPKzPi5Fgx+nnUNm4Mo/DEFPAhL4shziUE6qG8WjTNw0LkDLNFpYK+oicqc9x9hkQ+ZcUIJ4vufSrrtjvoSSFIFr5AzA3iwTYsvA+g/6Cu0C4bPucl+jn8YI5VSAMliSasoCkUCjnSV1Hi+KwvkbLzP4KcEQ+m/7L1nG4Vs7ZokoZQhgZiCzUiATXtzpV41EStsj+rEiOvWBmifEe2MYI7xBHWcrt75As9HNUBgEN5rJ4ayqvEzTeZ4B9Fo=
