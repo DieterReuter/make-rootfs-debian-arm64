@@ -13,6 +13,7 @@ deploy:
   file:
   - rootfs-armhf.tar.gz
   - rootfs-arm64.tar.gz
+  skip_cleanup: true
   on:
     tags: true
     repo: DieterReuter/make-roofs-debian-arm64

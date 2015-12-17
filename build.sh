@@ -43,4 +43,5 @@ iface eth0 inet dhcp
 EOM
 
 # Package rootfs tarball
+umask 0000
 tar -czf "rootfs-${BUILD_ARCH}.tar.gz" -C "${ROOTFS_DIR}/" .
