@@ -19,10 +19,10 @@ rm -fr "${ROOTFS_DIR}"
 #  --keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg \
 #  --no-check-gpg \
 #  --variant=buildd \
+#  --include=net-tools \
 qemu-debootstrap \
   --arch="${BUILD_ARCH}" \
   --exclude=debfoster \
-  --include=net-tools \
   jessie \
   "${ROOTFS_DIR}" \
   http://ftp.debian.org/debian
