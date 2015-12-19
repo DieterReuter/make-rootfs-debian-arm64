@@ -55,7 +55,7 @@ ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   systemctl enable systemd-networkd
 
 # Configure and enable resolved
-cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   ln -sfv /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   systemctl enable systemd-resolved
