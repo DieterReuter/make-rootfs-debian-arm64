@@ -19,13 +19,40 @@ rm -fr "${ROOTFS_DIR}"
 #  --keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg \
 #  --no-check-gpg \
 #  --variant=buildd \
-#  --include=net-tools \
 qemu-debootstrap \
   --arch="${BUILD_ARCH}" \
+  --include=avahi-daemon,net-tools,openssh-server \
   --exclude=debfoster \
   jessie \
   "${ROOTFS_DIR}" \
   http://ftp.debian.org/debian
+
+
+### Configure Debian ###
+
+# Use standard Debian apt repositories
+cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/apt/sources.list.d/debian.list
+deb http://httpredir.debian.org/debian jessie main
+deb-src http://httpredir.debian.org/debian jessie main
+EOM
+
+
+### Configure network ###
+
+# Set ethernet interface eth0 to dhcp
+cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/systemd/network/eth0.network
+[Match]
+Name=eth0
+[Network]
+DHCP=yes
+EOM
+
+# Enable networkd
+${SUDO_CMD} chroot "${ROOTFS_DIR}" systemctl enable systemd-networkd
+
+# Enable SSH root login
+${SUDO_CMD} chroot "${ROOTFS_DIR}" sed -i 's|PermitRootLogin without-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
+
 
 ### HypriotOS specific settings ###
 
@@ -35,12 +62,6 @@ echo 'black-pearl' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/hostname
 # set root password to 'hypriot'
 echo 'root:hypriot' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" /usr/sbin/chpasswd
 
-# set ethernet interface eth0 to dhcp
-cat << EOM | ${SUDO_CMD} chroot ${ROOTFS_DIR} tee /etc/network/interfaces.d/eth0.cfg
-# The network interface
-auto eth0
-iface eth0 inet dhcp
-EOM
 
 # Package rootfs tarball
 umask 0000
