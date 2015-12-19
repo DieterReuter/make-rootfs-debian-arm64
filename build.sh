@@ -31,7 +31,8 @@ qemu-debootstrap \
 ### Configure Debian ###
 
 # Use standard Debian apt repositories
-cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/apt/sources.list.d/debian.list
+cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  tee /etc/apt/sources.list.d/debian.list
 deb http://httpredir.debian.org/debian jessie main
 deb-src http://httpredir.debian.org/debian jessie main
 EOM
@@ -40,27 +41,39 @@ EOM
 ### Configure network ###
 
 # Set ethernet interface eth0 to dhcp
-cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/systemd/network/eth0.network
+cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  tee /etc/systemd/network/eth0.network
 [Match]
 Name=eth0
+
 [Network]
 DHCP=yes
 EOM
 
 # Enable networkd
-${SUDO_CMD} chroot "${ROOTFS_DIR}" systemctl enable systemd-networkd
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  systemctl enable systemd-networkd
+
+# Configure and enable resolved
+cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  ln -sfv /run/systemd/resolve/resolv.conf /etc/resolv.conf
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  systemctl enable systemd-resolved
 
 # Enable SSH root login
-${SUDO_CMD} chroot "${ROOTFS_DIR}" sed -i 's|PermitRootLogin without-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  sed -i 's|PermitRootLogin without-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
 
 
 ### HypriotOS specific settings ###
 
 # set hostname to 'black-pearl'
-echo 'black-pearl' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" tee /etc/hostname
+echo 'black-pearl' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  tee /etc/hostname
 
 # set root password to 'hypriot'
-echo 'root:hypriot' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" /usr/sbin/chpasswd
+echo 'root:hypriot' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  /usr/sbin/chpasswd
 
 
 # Package rootfs tarball
