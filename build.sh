@@ -28,8 +28,8 @@ rm -fr "${ROOTFS_DIR}"
 #  --variant=buildd \
 qemu-debootstrap \
   --arch="${BUILD_ARCH}" \
-  --include=avahi-daemon,ca-certificates,net-tools,openssh-server \
-  --exclude=debfoster \
+  --include="avahi-daemon,ca-certificates,net-tools,openssh-server" \
+  --exclude="debfoster" \
   jessie \
   "${ROOTFS_DIR}" \
   http://ftp.debian.org/debian
