@@ -26,9 +26,9 @@ rm -fr "${ROOTFS_DIR}"
 #  --keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg \
 #  --no-check-gpg \
 #  --variant=buildd \
-#  --include="avahi-daemon,ca-certificates,net-tools,openssh-server" \
 qemu-debootstrap \
   --arch="${BUILD_ARCH}" \
+  --include="avahi-daemon,ca-certificates,net-tools,openssh-server" \
   --exclude="debfoster" \
   jessie \
   "${ROOTFS_DIR}" \
