@@ -81,4 +81,4 @@ df -h "${SDCARD_DEVICE_NR}"
 ${SUDO_CMD} umount "${SDCARD_MOUNT}"
 
 echo "Status:"
-echo "  Finished. RootFS ${ROOTFS_TARGZ} successfully flashed to SD card successed!"
+echo "  Finished. RootFS ${ROOTFS_TARGZ} successfully flashed to SD card!"
