@@ -1,5 +1,12 @@
 #!/bin/bash -e
 set -x
+# This script only works on Linux
+if [ "$(uname -s)" != "Linux" ]; then
+  echo "ERROR: scripts works on Linux only, not on $(uname -s)!"
+  exit 1
+fi
+
+# Redefine sudo command, when not available
 if [ "$(whoami)" == "root" ]; then
   SUDO_CMD=""
 else
