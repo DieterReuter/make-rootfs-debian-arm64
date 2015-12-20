@@ -38,7 +38,7 @@ deb-src http://httpredir.debian.org/debian jessie main
 EOM
 
 
-### Configure network ###
+### Configure network and systemd services ###
 
 # Set ethernet interface eth0 to dhcp
 cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
@@ -63,6 +63,12 @@ ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
 # Enable SSH root login
 ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   sed -i 's|PermitRootLogin without-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
+
+# Enable NTP with timesyncd
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  sed -i 's|#Servers=|Servers=|g' /etc/systemd/timesyncd.conf
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  systemctl enable systemd-timesyncd
 
 
 ### HypriotOS specific settings ###
