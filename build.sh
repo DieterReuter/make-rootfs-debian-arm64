@@ -89,11 +89,11 @@ echo 'root:hypriot' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   /usr/sbin/chpasswd
 
 # set HypriotOS bash prompt for root user
-cat ./files/bash_prompt/bashrc | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+cat /vagrant/files/bash_prompt/bashrc | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   tee /root/.bashrc
-cat ./files/bash_prompt/bash_prompt | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+cat /vagrant/files/bash_prompt/bash_prompt | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   tee /root/.bash_prompt
-cat ./files/bash_prompt/profile | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+cat /vagrant/files/bash_prompt/profile | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   tee /root/.profile
 
 # Package rootfs tarball
