@@ -96,6 +96,7 @@ cat /vagrant/files/bash_prompt/bash_prompt | ${SUDO_CMD} chroot "${ROOTFS_DIR}" 
 cat /vagrant/files/bash_prompt/profile | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   tee /root/.profile
 
+
 # Package rootfs tarball
 umask 0000
 tar -czf "rootfs-${BUILD_ARCH}.tar.gz" -C "${ROOTFS_DIR}/" .
