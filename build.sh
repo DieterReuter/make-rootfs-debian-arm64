@@ -76,6 +76,16 @@ ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   sed -i 's|#Servers=|Servers=|g' /etc/systemd/timesyncd.conf
 ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
   systemctl enable systemd-timesyncd
+  
+# Set default locales to 'en_US.UTF-8'
+echo 'en_US.UTF-8 UTF-8' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  tee -a /etc/locale.gen
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  locale-gen
+echo 'locales locales/default_environment_locale select en_US.UTF-8' | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  debconf-set-selections
+${SUDO_CMD} chroot "${ROOTFS_DIR}" \
+  dpkg-reconfigure -f noninteractive locales
 
 
 ### HypriotOS specific settings ###
