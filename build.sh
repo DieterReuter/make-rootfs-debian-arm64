@@ -28,7 +28,7 @@ rm -fr "${ROOTFS_DIR}"
 #  --variant=buildd \
 qemu-debootstrap \
   --arch="${BUILD_ARCH}" \
-  --include="avahi-daemon,ca-certificates,net-tools,openssh-server" \
+  --include="apt-transport-https,avahi-daemon,ca-certificates,curl,htop,locales,net-tools,openssh-server,usbutils" \
   --exclude="debfoster" \
   jessie \
   "${ROOTFS_DIR}" \
