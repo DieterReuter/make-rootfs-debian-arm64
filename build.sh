@@ -39,9 +39,15 @@ qemu-debootstrap \
 
 # Use standard Debian apt repositories
 cat << EOM | ${SUDO_CMD} chroot "${ROOTFS_DIR}" \
-  tee /etc/apt/sources.list.d/debian.list
+  tee /etc/apt/sources.list
 deb http://httpredir.debian.org/debian jessie main
 deb-src http://httpredir.debian.org/debian jessie main
+
+deb http://httpredir.debian.org/debian jessie-updates main
+deb-src http://httpredir.debian.org/debian jessie-updates main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
 EOM
 
 
