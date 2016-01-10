@@ -3,12 +3,17 @@
 # Install build dependencies
 sudo apt-get update
 sudo apt-get install -y \
-    qemu \
-    qemu-user-static \
     binfmt-support \
     debootstrap \
     debian-ports-archive-keyring \
+    qemu \
+    qemu-user-static \
+    pv \
     --no-install-recommends
+
+# Install Hypriot flash script
+sudo wget -O /usr/local/bin/flash https://github.com/hypriot/flash/raw/master/Linux/flash
+sudo chmod +x /usr/local/bin/flash
 
 # Build for armhf (32-bit ARMv6, ARMv7)
 sudo BUILD_ARCH=armhf /vagrant/build.sh
